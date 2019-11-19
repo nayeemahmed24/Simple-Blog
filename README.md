@@ -1,4 +1,4 @@
- Simple Blog application using nodejs as backend and react for frontend .
+ Simple Blog application using nodejs as backend and bootstrap and js for frontend .
  
  #### Setup:
 
@@ -17,3 +17,7 @@ To run this project
 * another terminal start the react project in frontend via `npm start`
 
 This is based on *MongoDB* so user must have to run `mongod` server in his pc
+
+ #### Backend is completely developed based on a repo of rafiulgits
+
+ #### Repo : https://github.com/rafiulgits/redit
