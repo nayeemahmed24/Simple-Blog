@@ -1,0 +1,509 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*******************
+
+[Table of Contents]
+
+1. Fonts
+2. Body and some general stuff
+3. Header
+    3.1 Top Bar
+    3.2 Header Content
+    3.3 Logo
+4.Menu
+5.Home    
+/***********
+1. Fonts
+***********/
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900');
+
+/*********************************
+2. Body and some general stuff
+*********************************/
+
+*
+{
+	margin: 0;
+	padding: 0;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
+	text-shadow: rgba(0,0,0,.01) 0 0 1px;
+}
+body
+{
+	font-family: 'Roboto', sans-serif;
+	font-size: 15px;
+	font-weight: 500;
+	background: #FFFFFF;
+	color: #696969;
+}
+div
+{
+	display: block;
+	position: relative;
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+ul
+{
+	list-style: none;
+	margin-bottom: 0px;
+}
+p
+{
+	font-family: 'Roboto', sans-serif;
+	font-size: 15px;
+	line-height: 2;
+	font-weight: 500;
+	color: #696969;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
+	text-shadow: rgba(0,0,0,.01) 0 0 1px;
+}
+p:last-of-type
+{
+	margin-bottom: 0;
+}
+a
+{
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	-ms-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+a, a:hover, a:visited, a:active, a:link
+{
+	text-decoration: none;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
+	text-shadow: rgba(0,0,0,.01) 0 0 1px;
+}
+a:hover
+{
+	color: #20d34a !important;
+}
+::selection
+{
+	color: #20d34a;
+}
+p::selection
+{
+	
+}
+h1{font-size: 48px;}
+h2{font-size: 36px;}
+h3{font-size: 24px;}
+h4{font-size: 18px;}
+h5{font-size: 14px;}
+h1, h2, h3, h4, h5, h6
+{
+	font-family: 'Roboto', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
+	text-shadow: rgba(0,0,0,.01) 0 0 1px;
+}
+h1::selection, 
+h2::selection, 
+h3::selection, 
+h4::selection, 
+h5::selection, 
+h6::selection
+{
+	
+}
+.form-control
+{
+	color: #db5246;
+}
+section
+{
+	display: block;
+	position: relative;
+	box-sizing: border-box;
+}
+.clear
+{
+	clear: both;
+}
+.clearfix::before, .clearfix::after
+{
+	content: "";
+	display: table;
+}
+.clearfix::after
+{
+	clear: both;
+}
+.clearfix
+{
+	zoom: 1;
+}
+.float_left
+{
+	float: left;
+}
+.float_right
+{
+	float: right;
+}
+.trans_200
+{
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	-ms-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+.trans_300
+{
+	-webkit-transition: all 300ms ease;
+	-moz-transition: all 300ms ease;
+	-ms-transition: all 300ms ease;
+	-o-transition: all 300ms ease;
+	transition: all 300ms ease;
+}
+.trans_400
+{
+	-webkit-transition: all 400ms ease;
+	-moz-transition: all 400ms ease;
+	-ms-transition: all 400ms ease;
+	-o-transition: all 400ms ease;
+	transition: all 400ms ease;
+}
+.trans_500
+{
+	-webkit-transition: all 500ms ease;
+	-moz-transition: all 500ms ease;
+	-ms-transition: all 500ms ease;
+	-o-transition: all 500ms ease;
+	transition: all 500ms ease;
+}
+.fill_height
+{
+	height: 100%;
+}
+.super_container
+{
+	width: 100%;
+	overflow: hidden;
+}
+.prlx_parent
+{
+	overflow: hidden;
+}
+.prlx
+{
+	height: 130% !important;
+}
+.parallax-window
+{
+    min-height: 400px;
+    background: transparent;
+}
+.nopadding
+{
+	padding: 0px !important;
+}
+.button
+{
+	display: inline-block;
+	width: 220px;
+	height: 48px;   /***51*/
+	background: #283290;
+}
+.button::after
+{
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 3px;
+	background: #20d34a;
+	content: '';
+	z-index: 0;
+	-webkit-transition: all 400ms cubic-bezier(.33,.68,.59,.99);
+	-moz-transition: all 400ms cubic-bezier(.33,.68,.59,.99);
+	-ms-transition: all 400ms cubic-bezier(.33,.68,.59,.99);
+	-o-transition: all 400ms cubic-bezier(.33,.68,.59,.99);
+	transition: all 400ms cubic-bezier(.33,.68,.59,.99);
+}
+.button a
+{
+	display: block;
+	position: relative;
+	line-height: 48px;
+	font-size: 12px;
+	font-weight: 900;
+	color: #FFFFFF;
+	padding-left: 15px;
+	padding-right: 45px;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	z-index: 10;
+}
+.button:hover::after
+{
+	height: 100%;
+}
+.button:hover a
+{
+	color: #FFFFFF !important;
+}
+.section_title
+{
+	padding-top: 17px;
+}
+.section_title h2
+{
+	font-size: 30px;
+	font-weight: 500;
+	color: #232323;
+}
+.section_title::before
+{
+	display: block;
+	position: absolute;
+	left: 1px;
+	top: 0;
+	width: 54px;
+	height: 3px;
+	background: #20d34a;
+	content: '';
+}
+.section_title_light h2
+{
+	color: #FFFFFF;
+}
+
+/*********************************
+3. Header
+*********************************/
+
+.header
+{
+	display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: #FFFFFF;
+	z-index: 100;
+}
+.header.scrolled
+{
+	top: -48px;   /***-48*/
+}
+
+/*********************************
+3.1 Top Bar
+*********************************/
+
+.top_bar
+{
+	width: 100%;
+	background: #283290;
+}
+.top_bar_content
+{
+	width: 100%;
+	height: 48px;
+	padding-left: 214px;
+}
+.top_bar_item
+{
+	margin-left: 33px;
+}
+.top_bar_item a
+{
+	font-size: 14px;
+	color: #FFFFFF;
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	-ms-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+.top_bar_item:first-child
+{
+	margin-left: 37px;
+}
+.top_bar_item_register a
+{
+	height: 100%;
+	color: #FFFFFF;	
+	font-size: 14px;
+	font-weight: 700;
+	padding-left: 38px;
+	padding-right: 38px;
+}
+.top_bar_item_logIn a
+{
+	height: 100%;
+	color: #FFFFFF;
+	font-size: 14px;
+	font-weight: 700;
+	margin-left: 10px;
+	padding-left: 38px;
+	padding-right: 38px;
+}
+
+/*********************************
+3.2 Header Content
+*********************************/
+
+.header_container
+{
+	width: 100%;
+	background: #FFFFFF;
+	margin-bottom: 80px;
+}
+.header_content
+{
+	width: 100%;
+	height: 103px;    
+}
+.header.scrolled .header_content
+{
+	height: 80px;
+}
+.main_nav ul li
+{
+	display: inline-block;
+}
+.main_nav ul li:not(:first-child)
+{
+	margin-left: 32px;
+}
+.main_nav ul li a
+{
+	font-size: 16px;
+	font-weight: 500;
+	color: #323232;
+}
+.hamburger
+{
+	display: none;
+	cursor: pointer;
+}
+.hamburger i
+{
+	font-size: 24px;
+	color: #272727;
+}
+
+/*********************************
+3.3 Logo
+*********************************/
+
+.logo_container_outer
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+.logo_container
+{
+	position: absolute;
+	top: 0;
+	left: 15px;
+	width: 216px;
+	height: 150px;
+	background: #FFFFFF;
+	box-shadow: 0px 31px 29px rgba(0,0,0,0.09);
+	z-index: 10;
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	-ms-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+.header.scrolled .logo_container
+{
+	top: 48px;
+	height: 120px;
+}
+.logo_container a
+{
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+.logo_content
+{
+	width: 100%;
+	height: 100%;
+	padding-left: 36px;
+}
+.logo_line
+{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 4px;
+	background: #20d34a;
+}
+.logo
+{
+	margin-top: 27px;
+}
+.logo span
+{
+	color: #20d34a;
+}
+.logo_container a .logo:hover
+{
+	color: #283290;
+}
+.logo_text
+{
+	font-size: 30px;
+	font-weight: 500;
+	color: #283290;
+	line-height: 0.75;
+}
+.logo_box
+{
+	display: inline-block;
+	width: 23px;
+	height: 23px;
+	background: #20d34a;
+	color: #FFFFFF;
+	font-size: 24px;
+	line-height: 23px;
+	text-align: center;
+	-webkit-transform: translateY(-2px);
+	-moz-transform: translateY(-2px);
+	-ms-transform: translateY(-2px);
+	-o-transform: translateY(-2px);
+	transform: translateY(-2px);
+	margin-left: 1px;
+}
+.logo_sub
+{
+	font-size: 14px;
+	font-weight: 400;
+	color: #8f8e8e;
+	padding-left: 3px;
+	margin-top: 2px;
+}
+.date_picker
+{
+	margin-top: 250px;
+	/* margin-left: 50%;
+	margin-right: 50%; */
+	margin-left: 151px;
+}
+.date_picker h2
+{
+	margin-bottom: 50px;
+	color: #232323;
+}
+

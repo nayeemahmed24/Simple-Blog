@@ -1,0 +1,161 @@
+<title>Update Post</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="CareMed demo project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="styles/home.css">
+<script>
+    var json;
+</script>
+<style>
+    .c {
+        text-decoration-line: underline;
+        text-decoration-style: double;
+    }
+</style>
+
+
+<script>
+    function post() {
+        var title_t = document.getElementById("title_text").value;
+        var body_t = document.getElementById("body_text").value;
+        var url = "http://localhost:3002/api/post/update";
+
+        var token = window.localStorage.getItem('token');
+        var token_json = JSON.parse(token);
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.setRequestHeader("Authorization", "Bearer " + token_json.token);
+        var data = JSON.stringify({ "title": title_t, "description": body_t, "id": json._id });
+        console.log(json)
+
+        xhr.onload = function () {
+            if (this.status == 200) {
+                alert("Post Updated");
+                console.log(this.response);
+                window.location.replace("./mypost.html");
+                // Here we go on the new page
+                var jsonResponse = JSON.parse(this.response);
+            }
+            else {
+                alert("Invalid Post");
+            }
+        };
+        xhr.send(data);
+    }
+
+</script>
+
+
+
+
+
+<div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
+        <h3 class="navbar-brand">Redit</h3>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./home.html">Home <span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./profile.html">Profile <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./mypost.html">My Post <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./createPost.html">Add Post <span class="sr-only">(current)</span></a>
+                    </li>
+
+
+
+
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="javascript: logout();">Logout</a>
+                    </li>
+
+                </ul>
+
+
+
+            </div>
+    </nav>
+</div>
+<script>
+    function logout() {
+        window.localStorage.clear();
+        window.location.replace("./home.html")
+    }
+</script>
+
+<div class="d-flex justify-content-center mt-2 mb-2 " style="background: #DAD9D0;height: 100%; width: 100%;">
+    <div class="justify-content-center col-md-12">
+        <h1 style="color: black;" class=" d-flex justify-content-center c">Create Post</h1>
+        <div class="container">
+            <form>
+                <label for="title_text" style="color: black;">
+                    <h3>Title :</h3>
+                </label><br>
+                <input type="text" class="form-control" id="title_text" rows="1" placeholder="Title"></input><br><br>
+                <label for="body_text" style="color: black;">
+                    <h3>Body :</h3>
+                </label><br>
+                <textarea class="form-control" id="body_text" rows="8" placeholder="Body"></textarea>
+            </form>
+            <button class="btn btn-secondary" style="padding: 10px; margin-top: 10px;"
+                onclick="javascript:post();">Create Post</button><br><br>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function getUrlVars() {
+        var vars = {};
+        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+            vars[key] = value;
+        });
+        return vars;
+    }
+
+
+    var id = getUrlVars()["id"];
+    var url = "http://localhost:3002/api/post/" + id;
+
+    // var token = window.localStorage.getItem('token');
+    // var token_json = JSON.parse(token);
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url, true);
+    // xhr.setRequestHeader("Authorization","Bearer "+token_json.token);
+    xhr.onload = function () {
+        if (this.status == 200) {
+            console.log(this.response);
+            // Here we go on the new page
+            var jsonResponse = JSON.parse(this.response);
+            json = jsonResponse;
+            document.getElementById('body_text').textContent = jsonResponse.body;
+            document.getElementById('title_text').value = jsonResponse.title;
+
+        }
+        else {
+            alert("Invalid profile");
+        }
+    };
+    xhr.send();
+
+</script>

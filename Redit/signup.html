@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+  <title>Signup</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="BHealthy demo project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="styles/sign_up.css">
+    <link rel="stylesheet" type="text/css" href="plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+<script>
+    function signup(){
+        var name = document.getElementById("name_text").value;
+        var login_text = document.getElementById("login_text").value;
+        var password_text =document.getElementById("password_text").value;
+        var url = "http://localhost:3002/api/signup";
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.open("POST", url, true);
+
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        var data = JSON.stringify({"name":name,"email":login_text,"password":password_text});
+
+        xhr.onload = function () {
+        if (this.status == 200) {
+          // Here we go on the new page
+          var jsonResponse = JSON.parse(this.response);
+          window.localStorage.setItem('token', JSON.stringify(jsonResponse));
+          console.log(jsonResponse)
+            window.location.replace("profile.html");
+        }
+        else {
+          alert("Invalid Signup");
+        }
+      };
+      xhr.send(data);
+
+    }
+</script>
+
+
+<div class="container">
+    <div class="title">Create a user account</div>
+    <div class="row row-lg-eq-height">
+        <div class="col-lg-8">
+            <div class="sub_container">
+                <div class="form">
+                    <label class="label">Name :</label>
+                    <input type="text" class="input" placeholder="" id="name_text">
+                </div>
+
+                
+
+                <div class="form">
+                    <label class="label">email :</label>
+                    <input type="text" class="input" placeholder="" id="login_text">
+                </div>
+
+                <div class="form">
+                    <label class="label">password :</label>
+                    <input type="password" class="input" placeholder="" id="password_text">
+                </div>
+
+                
+
+
+
+
+                <div class="reg">
+                    <div class="button reg_btn">
+                        <a href="javascript: signup();">Register Now!</a></div>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="styles/bootstrap4/popper.js"></script>
+        <script src="styles/bootstrap4/bootstrap.min.js"></script>
+        <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+        <script src="plugins/easing/easing.js"></script>
+        <script src="plugins/parallax-js-master/parallax.min.js"></script>
+        <script src="js/custom.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    
+
+      </body>
+      </html>

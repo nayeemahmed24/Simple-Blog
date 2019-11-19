@@ -1,0 +1,142 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
+
+<title>Post</title>
+<script>
+
+    function getUrlVars() {
+        var vars = {};
+        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+            vars[key] = value;
+        });
+        return vars;
+    }
+
+
+    var id = getUrlVars()["id"];
+    var url = "http://localhost:3002/api/post/"+id;
+
+    // var token = window.localStorage.getItem('token');
+    // var token_json = JSON.parse(token);
+    var xhr =new XMLHttpRequest();
+    xhr.open("GET", url, true);
+    // xhr.setRequestHeader("Authorization","Bearer "+token_json.token);
+    xhr.onload = function() {
+        if (this.status == 200) {
+            console.log(this.response);
+            // Here we go on the new page
+            var jsonResponse = JSON.parse(this.response);
+            var card_title_t = document.getElementById("card_title");
+            card_title_t.textContent= jsonResponse.title;
+
+            var card_username_t = document.getElementById("card_username");
+            card_username_t.textContent = jsonResponse.user.name;
+
+            var card_datetime_t = document.getElementById("card_datetime");
+            card_datetime_t.textContent = jsonResponse.date+", "+jsonResponse.time;
+
+            var card_description_t = document.getElementById("card_description");
+            card_description_t.textContent = jsonResponse.body;
+        }
+        else {
+            alert("Invalid profile");
+        }
+    };
+    xhr.send();
+    
+</script>
+
+
+    
+
+
+<div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
+            <h3 class="navbar-brand">Redit</h3>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./home.html">Home <span class="sr-only">(current)</span></a>
+                    </li>
+
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link" id = "profile" href="./profile.html">Profile <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id = "mypost" href="./mypost.html">My Post <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id = "createPost" href="./createPost.html">Add Post <span class="sr-only">(current)</span></a>
+                </li>
+
+
+
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" id = "login"  href="./signin.html">Login</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./signup.html" id = "register">Register</a>
+                    </li>
+                    <li class="nav-item active">
+                            <a class="nav-link" href="javascript: logout()" id = "logout">Logout</a>
+                        </li>
+                </ul>
+
+            </div>
+        </nav>
+
+
+    <script>
+            if(window.localStorage.getItem('token') == null){
+                document.getElementById('login').style.display = "block"
+                document.getElementById('register').style.display = "block"
+                document.getElementById('profile').style.display = "none"
+                document.getElementById('mypost').style.display = "none"
+                document.getElementById('createPost').style.display = "none"
+                document.getElementById('logout').style.display = "none"
+                
+                
+            }
+            else{
+                document.getElementById('login').style.display = "none"
+                document.getElementById('register').style.display = "none"
+                document.getElementById('logout').style.display = "block"
+                document.getElementById('profile').style.display = "block"
+                document.getElementById('mypost').style.display = "block"
+                document.getElementById('createpost').style.display = "block"
+                document.getElementById('logout').style.display = "block"
+                
+            }
+        
+        </script>
+
+<div class="d-flex justify-content-center col-md-12 mt-2 mb-2 " style="background: #DAD9D0; padding-bottom: 190px; padding-top: 10px;"  >
+    <div class="col-md-9">
+        <h1 class="d-flex justify-content-center " style="margin-top: 60px; color: black;">Post Details</h1>
+        <div class="container col-md-12" style="margin-bottom: 10px;">
+            <div class="card" style="padding: 30px;">
+                <div class="card-body">
+                    <h2  id="card_title"></h2>
+                    <p id="card_username"></p>
+                    <p id="card_datetime"> </p><hr>
+                    <p id="card_description">
+                    </p>
+                    <br>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

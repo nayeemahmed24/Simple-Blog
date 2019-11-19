@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Signin</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="BHealthy demo project">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="styles/login.css">
+  <link rel="stylesheet" type="text/css" href="plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+
+
+  <style>
+    /* ANIMATIONS */
+
+    /* Simple CSS3 Fade-in-down Animation */
+    .fadeInDown {
+      -webkit-animation-name: fadeInDown;
+      animation-name: fadeInDown;
+      -webkit-animation-duration: 1s;
+      animation-duration: 1s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+    }
+
+    @-webkit-keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+      }
+
+      100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+      }
+    }
+
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+      }
+
+      100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+      }
+    }
+
+    /* Simple CSS3 Fade-in Animation */
+    @-webkit-keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @-moz-keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .fadeIn {
+      opacity: 0;
+      -webkit-animation: fadeIn ease-in 1;
+      -moz-animation: fadeIn ease-in 1;
+      animation: fadeIn ease-in 1;
+
+      -webkit-animation-fill-mode: forwards;
+      -moz-animation-fill-mode: forwards;
+      animation-fill-mode: forwards;
+
+      -webkit-animation-duration: 1s;
+      -moz-animation-duration: 1s;
+      animation-duration: 1s;
+    }
+
+    .fadeIn.first {
+      -webkit-animation-delay: 0.4s;
+      -moz-animation-delay: 0.4s;
+      animation-delay: 0.4s;
+    }
+
+    .fadeIn.second {
+      -webkit-animation-delay: 0.6s;
+      -moz-animation-delay: 0.6s;
+      animation-delay: 0.6s;
+    }
+
+    .fadeIn.third {
+      -webkit-animation-delay: 0.8s;
+      -moz-animation-delay: 0.8s;
+      animation-delay: 0.8s;
+    }
+
+    .fadeIn.fourth {
+      -webkit-animation-delay: 1s;
+      -moz-animation-delay: 1s;
+      animation-delay: 1s;
+    }
+
+    /* Simple CSS3 Fade-in Animation */
+    .underlineHover:after {
+      display: block;
+      left: 0;
+      bottom: -10px;
+      width: 0;
+      height: 2px;
+      background-color: #56baed;
+      content: "";
+      transition: width 0.2s;
+    }
+
+    .underlineHover:hover {
+      color: #0d0d0d;
+    }
+
+    .underlineHover:hover:after {
+      width: 100%;
+    }
+
+    .wrapper {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      min-height: 100%;
+      padding: 20px;
+    }
+
+
+    .modal-content {
+      border-radius: 0px;
+      box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-backdrop.show {
+      opacity: 0.75;
+    }
+
+    .loader {
+      position: relative;
+      text-align: center;
+      margin: 15px auto 35px auto;
+      z-index: 9999;
+      display: block;
+      width: 80px;
+      height: 80px;
+      border: 10px solid rgba(0, 0, 0, .3);
+      border-radius: 50%;
+      border-top-color: #000;
+      animation: spin 1s ease-in-out infinite;
+      -webkit-animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    @-webkit-keyframes spin {
+      to {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+  </style>
+
+
+
+</head>
+<script>
+    function login(){
+        var login_text = document.getElementById("login_text").value;
+        var password_text =document.getElementById("password_text").value;
+        var url = "http://localhost:3002/api/login";
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.open("POST", url, true);
+
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        var data = JSON.stringify({"email":login_text,"password":password_text});
+
+        xhr.onload = function () {
+        if (this.status == 200) {
+          // Here we go on the new page
+          var jsonResponse = JSON.parse(this.response);
+          window.localStorage.setItem('token', JSON.stringify(jsonResponse));
+          console.log(jsonResponse)
+            window.location.replace("./profile.html");
+        }
+        else {
+          alert("Invalid Login");
+        }
+      };
+      xhr.send(data);
+
+    }
+</script>
+
+<div class="flex-container  fadeInDown">
+    <div class="title">Log in</div>
+    <div class="sub_container">
+
+      <div class="form">
+        <label>Username :</label>
+        <input type="text" class="input" id="login_text" placeholder="Username">
+      </div>
+
+      <div class="form">
+        <label>Password :</label>
+        <input type="password" class="input" id="password_text" placeholder="Password">
+      </div>
+
+      <div class="button login_btn">
+        <a href="javascript: login();">Log in</a></div>
+      <div class="form">
+        <label>Don't Have an Account?</label>
+      </div>
+
+      <div class="button reg_btn">
+        <a href="./signup.html">Register Now!</a></div>
+
+    </div>
+  </div>
+
+  <!--========================================= Loading Modal ========================================-->
+  <div class="modal fade" id="loadMe" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <div class="loader"></div>
+          <div class="loader-txt">
+            <p>Authenticating.... <br><br><small>Please wait... </small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+  <!--================Loading Modal =================-->
+
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="styles/bootstrap4/popper.js"></script>
+  <script src="styles/bootstrap4/bootstrap.min.js"></script>
+  <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+  <script src="plugins/easing/easing.js"></script>
+  <script src="plugins/parallax-js-master/parallax.min.js"></script>
+  <script src="js/custom.js"></script>
+
+</body>
+
+</html>
+
+
+
+
